@@ -2,8 +2,8 @@ package baseball.io;
 
 import baseball.domain.Message;
 
-public class Output {
-    private Output() {
+public class OutPrint {
+    private OutPrint() {
     }
 
     public static void initMsg() {
