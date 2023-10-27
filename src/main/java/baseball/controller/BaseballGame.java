@@ -3,7 +3,7 @@ package baseball.controller;
 import baseball.domain.AnswerChecker;
 import baseball.domain.Computer;
 import baseball.io.Input;
-import baseball.io.Output;
+import baseball.io.OutPrint;
 import baseball.type.ReStartFlag;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class BaseballGame {
      * 게임을 동작시키는 기능
      * */
     public static void run() {
-        Output.initMsg();
+        OutPrint.initMsg();
         start();
     }
 
@@ -33,17 +33,17 @@ public class BaseballGame {
 
         while (!result.equals("3스트라이크")) {
 
-            Output.inputMsg();
+            OutPrint.inputMsg();
             String input = Input.stringNum();
 
             // 입력받은 StringNum을 List<Integer>로 바꾸어 정답체크 결과출력
             List<Integer> userInput = stringToIntegerList(input);
             result = AnswerChecker.result(answer, userInput);
 
-            Output.checkResultMsg(result);
+            OutPrint.checkResultMsg(result);
         }
         // 정답을 맞춘 후 게임을 지속할 지 여부 묻기
-        Output.correctMsg();
+        OutPrint.correctMsg();
         continueGame();
     }
 
@@ -52,7 +52,7 @@ public class BaseballGame {
      * */
     public static void exit(String str) {
 
-        Output.errorMsg(str);
+        OutPrint.errorMsg(str);
         throw new IllegalArgumentException(str);
     }
 
@@ -61,13 +61,13 @@ public class BaseballGame {
      * */
     private static void continueGame() {
 
-        Output.continueMsg();
+        OutPrint.continueMsg();
         String input = Input.reStartOption();
 
         if (ReStartFlag.isRestart(input)) {
             start();
         } else if (ReStartFlag.isEnd(input)) {
-            Output.expireMsg();
+            OutPrint.expireMsg();
             Console.close();
         }
     }
